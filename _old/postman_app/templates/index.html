@@ -1,0 +1,28 @@
+<html>
+<head>
+<script type="text/javascript">
+	function httpGetAsync(theUrl, callback) {
+	    var xmlHttp = new XMLHttpRequest();
+	    xmlHttp.onreadystatechange = function() {
+	        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+	            callback(xmlHttp.responseText);
+	    }
+	    xmlHttp.open("GET", theUrl, true); // true for asynchronous
+	    xmlHttp.send(null);
+	}
+	
+	httpGetAsync('https://flask-rest-api-maximusminimus.c9users.io/store', function(response) {
+		alert(response);
+	})
+	
+	
+</script>
+</head>
+<body>
+
+<div id="myElement">
+	Test API
+</div>
+
+</body>
+</html>

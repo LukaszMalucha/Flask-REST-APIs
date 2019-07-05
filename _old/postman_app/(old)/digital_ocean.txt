@@ -1,0 +1,39 @@
+## Install
+apt-get update
+apt-get install postgresql postgresql-contrib
+
+
+## Swap user
+sudo -i -u postgres
+
+## Enter postgres
+psql
+## Exit psql
+\q  
+## Exit user postgres
+exit
+
+## CREATE NEW USER
+adduser lukasz
+
+## Temporarily access user root
+visudo
+lukasz ALL=(ALL:ALL) ALL
+
+## Make sure that we can log in to server directly
+vi /etc/ssh/sshd_config
+Change permission to no and allowusers lukasz
+:wq
+
+service sshd reload
+
+## LINK USER TO POSTGRES
+sudo su 
+sudo -i -u postgres
+createuser lukasz
+
+## NGINX
+sudo ufw enable
+sudo ufw allow 'Nginx HTTP'
+sudo ufw allow ssh
+systemctl status nginxp
