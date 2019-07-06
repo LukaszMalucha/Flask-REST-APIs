@@ -1,67 +1,41 @@
-from flask import Flask, jsonify, request
+import os
+import env
+from flask import Flask
+from flask_restful import Api
+from flask_jwt import JWT
+
+from security import authenticate, identity
+from resources.user import UserRegister
+from resources.item import Item, ItemList
+from resources.store import Store, StoreList
 
 app = Flask(__name__)
-
-stores = [
-    {
-        'name': "My Store",
-        'items': [
-            {
-                'name': 'My Item',
-                'price': 15.99
-
-            }
-
-        ]
-
-    }
-]
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['DEBUG'] = True
+api = Api(app)
 
 
-@app.route('/store', methods=['POST'])
-def create_store():
-    request_data = request.get_json()
-    new_store = {
-        'name': request_data['name'],
-        'items': []
-    }
-    stores.append(new_store)
-    return jsonify(new_store)
 
 
-@app.route('/store/<string:name>', methods=['GET'])
-def get_store(name):
-    for store in stores:
-        if store['name'] == name:
-            return jsonify(store)
-    return jsonify({'message': 'store not found'})
 
+jwt = JWT(app, authenticate, identity)  # /auth
 
-@app.route('/stores')
-def get_stores():
-    return jsonify({'stores': stores})
+api.add_resource(Store, '/store/<string:name>')
+api.add_resource(StoreList, '/stores')
+api.add_resource(Item, '/item/<string:name>')
+api.add_resource(ItemList, '/items')
+api.add_resource(UserRegister, '/register')
 
+if __name__ == '__main__':
+    from db import db
 
-@app.route('/store/<string:name>/item', methods=['POST'])
-def create_item_in_store(name):
-    request_data = request.get_json()
-    for store in stores:
-        if store['name'] == name:
-            new_item = {
-                'name': request_data['name'],
-                'price': request_data['price']
-            }
-            store['items'].append(new_item)
-            return jsonify(new_item)
-    return jsonify({'message': 'store not found'})
+    db.init_app(app)
 
+    if app.config['DEBUG']:
+        @app.before_first_request
+        def create_tables():
+            db.create_all()
 
-@app.route('/store/<string:name>/item')
-def get_item_in_store(name):
-    for store in stores:
-        if store['name'] == name:
-            return jsonify({'items': store['items']})
-    return jsonify({'message': 'store not found'})
-
-
-app.run()
+    app.run()
