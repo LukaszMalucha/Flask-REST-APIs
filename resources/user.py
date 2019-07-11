@@ -1,9 +1,12 @@
-from flask_restful import Resource, reqparse
+from flask import request
+from flask_restful import Resource
 from models.user import UserModel
 from werkzeug.security import safe_str_cmp
 from flask_jwt_extended import create_access_token, create_refresh_token, jwt_refresh_token_required, get_jwt_identity, \
     jwt_required, get_raw_jwt
+from marshmallow import ValidationError
 from blacklist import BLACKLIST
+from schemas.user import UserSchema
 
 BLANK_ERROR = "{} cannot be blank."
 NAME_ALREADY_EXISTS = "A user with that username already exists"
@@ -14,29 +17,23 @@ USER_DELETED = "User deleted"
 INVALID_CREDENTIALS = "Invalid credentials"
 LOGOUT_SUCCESS = 'Successfully logged out.'
 
-_user_parser = reqparse.RequestParser()
-_user_parser.add_argument('username',
-                          type=str,
-                          required=True,
-                          help=BLANK_ERROR.format('username')
-                          )
-_user_parser.add_argument('password',
-                          type=str,
-                          required=True,
-                          help=BLANK_ERROR.format('password')
-                          )
+user_schema = UserSchema()
 
 
 class UserRegister(Resource):
 
     @classmethod
     def post(cls):
-        data = _user_parser.parse_args()
+        try:
+            user_json = request.get_json()
+            user_data = user_schema.load(request.get_json())
+        except ValidationError as error:
+            return error.messages, 400
 
-        if UserModel.find_by_username(data['username']):
+        if UserModel.find_by_username(user_data['username']):
             return {"message": NAME_ALREADY_EXISTS}, 400
 
-        user = UserModel(**data)
+        user = UserModel(**user_data)
         user.save_to_db()
 
         return {"message": USER_SUCCESS}, 201
@@ -49,7 +46,7 @@ class User(Resource):
         user = UserModel.find_by_id(user_id)
         if not user:
             return {'message': USER_NOT_FOUND}, 404
-        return user.json()
+        return user_schema.dump(user), 200
 
     @classmethod
     def delete(cls, user_id: int):
@@ -64,10 +61,14 @@ class UserLogin(Resource):
 
     @classmethod
     def post(cls):
-        data = _user_parser.parse_args()
-        user = UserModel.find_by_username(data['username'])
+        try:
+            user_json = request.get_json()
+            user_data = user_schema.load(user_json)
+        except ValidationError as error:
+            return error.messages, 400
+        user = UserModel.find_by_username(user_data['username'])
 
-        if user and safe_str_cmp(user.password, data['password']):
+        if user and safe_str_cmp(user.password, user_data['password']):
             access_token = create_access_token(identity=user.id, fresh=True)
             refresh_token = create_refresh_token(user.id)
             return {
