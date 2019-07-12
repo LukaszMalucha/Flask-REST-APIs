@@ -3,10 +3,10 @@ import env
 from flask import Flask, jsonify
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
-
 from resources.user import User, UserRegister, UserLogin, UserLogout, TokenRefresh
-
+from resources.item import Item, ItemList
 from blacklist import BLACKLIST
+from ma import ma
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
@@ -32,11 +32,15 @@ api.add_resource(UserRegister, '/register')
 api.add_resource(UserLogin, '/login')
 api.add_resource(UserLogout, '/logout')
 api.add_resource(TokenRefresh, '/refresh')
+api.add_resource(Item, '/item/<string:name>')
+api.add_resource(ItemList, '/items')
+
 
 if __name__ == '__main__':
     from db import db
 
     db.init_app(app)
+    ma.init_app(app)
 
     if app.config['DEBUG']:
         @app.before_first_request
