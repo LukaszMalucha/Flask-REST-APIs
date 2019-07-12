@@ -3,8 +3,10 @@ import env
 from flask import Flask, jsonify
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
+from marshmallow import ValidationError
 from resources.user import User, UserRegister, UserLogin, UserLogout, TokenRefresh
 from resources.item import Item, ItemList
+from resources.store import Store, StoreList
 from blacklist import BLACKLIST
 from ma import ma
 
@@ -17,6 +19,10 @@ app.config['JWT_BLACKLIST_ENABLED'] = True  # enable blacklisting user id's
 app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']  # enable blacklist for those functions
 app.config['DEBUG'] = True
 api = Api(app)
+
+@app.errorhandler(ValidationError)
+def handle_marshmallow_validation(error):
+    return jsonify(error.messages), 400
 
 # Enable jwt authentication (check resources.user.UserLogin)
 jwt = JWTManager(app)
@@ -34,6 +40,8 @@ api.add_resource(UserLogout, '/logout')
 api.add_resource(TokenRefresh, '/refresh')
 api.add_resource(Item, '/item/<string:name>')
 api.add_resource(ItemList, '/items')
+api.add_resource(Store, '/store/<string:name>')
+api.add_resource(StoreList, '/stores')
 
 
 if __name__ == '__main__':

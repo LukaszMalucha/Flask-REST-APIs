@@ -32,10 +32,8 @@ class Item(Resource):
         item_json = request.get_json()
         item_json["name"] = name # populate missing field
 
-        try:
-            item = item_schema.load(item_json)
-        except ValidationError as error:
-            return error.messages, 400
+        item = item_schema.load(item_json)
+
 
         try:
             item.save_to_db()
@@ -63,11 +61,8 @@ class Item(Resource):
             item.price = item_json["price"]
         else:
             item_json["name"] = name
+            item = item_schema.load(item_json)
 
-            try:
-                item = item_schema.load(item_json)
-            except ValidationError as error:
-                return error.messages, 400
 
         item.save_to_db()
 
