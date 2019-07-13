@@ -1,4 +1,4 @@
-from flask import request
+from flask import request, render_template, make_response
 from flask_restful import Resource
 from models.user import UserModel
 from werkzeug.security import safe_str_cmp
@@ -15,7 +15,9 @@ ERROR_CREATING = "An error occured while creating a store."
 USER_NOT_FOUND = "User not found."
 USER_DELETED = "User deleted"
 INVALID_CREDENTIALS = "Invalid credentials"
-LOGOUT_SUCCESS = 'Successfully logged out.'
+LOGOUT_SUCCESS = "Successfully logged out."
+NOT_ACTIVATED_ERROR = "Registration not cofirmed, please check your email."
+USER_ACTIVATED = "Registration completed,  your account is activated."
 
 user_schema = UserSchema()
 
@@ -25,7 +27,6 @@ class UserRegister(Resource):
     @classmethod
     def post(cls):
         user = user_schema.load(request.get_json())
-
 
         if UserModel.find_by_username(user.username):
             return {"message": NAME_ALREADY_EXISTS}, 400
@@ -63,12 +64,15 @@ class UserLogin(Resource):
         user = UserModel.find_by_username(user_data.username)
 
         if user and safe_str_cmp(user.password, user_data.password):
-            access_token = create_access_token(identity=user.id, fresh=True)
-            refresh_token = create_refresh_token(user.id)
-            return {
-                       'access_token': access_token,
-                       'refresh_token': refresh_token
-                   }, 200
+            # Check if user is activated
+            if user.activated:
+                access_token = create_access_token(identity=user.id, fresh=True)
+                refresh_token = create_refresh_token(user.id)
+                return {
+                           'access_token': access_token,
+                           'refresh_token': refresh_token
+                       }, 200
+            return {"message": NOT_ACTIVATED_ERROR.format(user.username)}, 400
 
         return {'message': INVALID_CREDENTIALS}, 401
 
@@ -91,3 +95,16 @@ class TokenRefresh(Resource):
         current_user = get_jwt_identity()
         new_token = create_access_token(identity=current_user, fresh=False)
         return {'access_token': new_token}, 200
+
+class UserConfirm(Resource):
+    @classmethod
+    def get(cls, user_id: int):
+        user = UserModel.find_by_id(user_id)
+        if not user:
+            return {"message": USER_NOT_FOUND},404
+        user.activated = True
+        user.save_to_db()
+        headers = {"Content-Type": "text/html"}
+        return make_response(render_template ("confirmation_page.html", email=user.username), 200, headers)
+
+
