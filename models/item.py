@@ -17,6 +17,8 @@ class ItemModel(db.Model):
     def find_by_name(cls, name: str) -> "ItemModel":
         return cls.query.filter_by(name=name).first()
 
+
+
     @classmethod
     def find_all(cls) -> List["ItemModel"]:
         return cls.query.all()

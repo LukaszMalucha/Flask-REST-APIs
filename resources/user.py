@@ -1,3 +1,4 @@
+import traceback
 from flask import request, render_template, make_response
 from flask_restful import Resource
 from models.user import UserModel
@@ -10,7 +11,9 @@ from schemas.user import UserSchema
 
 BLANK_ERROR = "{} cannot be blank."
 NAME_ALREADY_EXISTS = "A user with that username already exists"
-USER_SUCCESS = "User created successfully."
+EMAIL_ALREADY_EXISTS = "That email is already registered"
+FAILED_TO_CREATE = "Unable to register user at this time"
+REGISTER_SUCCESS = "Account created successfully. An email with the activation link has been sent."
 ERROR_CREATING = "An error occured while creating a store."
 USER_NOT_FOUND = "User not found."
 USER_DELETED = "User deleted"
@@ -31,9 +34,16 @@ class UserRegister(Resource):
         if UserModel.find_by_username(user.username):
             return {"message": NAME_ALREADY_EXISTS}, 400
 
-        user.save_to_db()
+        if UserModel.find_by_email(user.email):
+            return {"message": EMAIL_ALREADY_EXISTS}, 400
 
-        return {"message": USER_SUCCESS}, 201
+        try:
+            user.save_to_db()
+            # user.send_confirmation_email()
+            return {"message": REGISTER_SUCCESS}, 201
+        except:
+            traceback.print_exc()
+            return {"message": FAILED_TO_CREATE}, 500
 
 
 class User(Resource):
@@ -59,7 +69,7 @@ class UserLogin(Resource):
     @classmethod
     def post(cls):
         user_json = request.get_json()
-        user_data = user_schema.load(user_json)
+        user_data = user_schema.load(user_json, partial=('email',))  # no need for email in login if not present
 
         user = UserModel.find_by_username(user_data.username)
 
@@ -96,15 +106,14 @@ class TokenRefresh(Resource):
         new_token = create_access_token(identity=current_user, fresh=False)
         return {'access_token': new_token}, 200
 
+
 class UserConfirm(Resource):
     @classmethod
     def get(cls, user_id: int):
         user = UserModel.find_by_id(user_id)
         if not user:
-            return {"message": USER_NOT_FOUND},404
+            return {"message": USER_NOT_FOUND}, 404
         user.activated = True
         user.save_to_db()
         headers = {"Content-Type": "text/html"}
-        return make_response(render_template ("confirmation_page.html", email=user.username), 200, headers)
-
-
+        return make_response(render_template("confirmation_page.html", email=user.username), 200, headers)
