@@ -1,14 +1,10 @@
 import os
 import env
 from flask import request, url_for
-from requests import Response, post
-
+from requests import Response
+from libs.mailgun import Mailgun
 from db import db
 
-MAILGUN_DOMAIN = os.environ.get('MAILGUN_DOMAIN')
-MAILGUN_API_KEY = os.environ.get('MAILGUN_API_KEY')
-FROM_TITLE = "Bookstore REST API"
-MAILGUN_EMAIL = os.environ.get('MAILGUN_EMAIL')
 
 
 class UserModel(db.Model):
@@ -35,17 +31,10 @@ class UserModel(db.Model):
     def send_confirmation_email(self) -> Response:
         # remove end slash from http://127.0.0.1:5000 + /user_confirm/1
         link = request.url_root[:-1] + url_for("userconfirm", user_id=self.id)
-
-        return post(
-            f"https://api.mailgun.net/v3/{MAILGUN_DOMAIN}/messages",
-            auth=("api", MAILGUN_API_KEY),
-            data={
-                "from": f"{FROM_TITLE} <{MAILGUN_EMAIL}>",
-                "to": self.email,
-                "subject": "Registration confirmation",
-                "text": f"Please click the link to confirm your registration: {link}"
-            },
-        )
+        subject = "Registration confirmation"
+        text = f"Please click the link to confirm your registration: {link}"
+        html = f'<html>Please click the link to confirm your registration: <a href="{link}">{link}</a></html>'
+        return Mailgun.send_email([self.email], subject, text, html)
 
     def save_to_db(self) -> None:
         db.session.add(self)
