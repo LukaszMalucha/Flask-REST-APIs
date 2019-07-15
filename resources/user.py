@@ -39,12 +39,11 @@ class UserRegister(Resource):
 
         try:
             user.save_to_db()
-            # user.send_confirmation_email()
+            user.send_confirmation_email()
             return {"message": REGISTER_SUCCESS}, 201
         except:
             traceback.print_exc()
             return {"message": FAILED_TO_CREATE}, 500
-
 
 class User(Resource):
 
