@@ -2,6 +2,7 @@ import os
 import env
 from flask import request, url_for
 from requests import Response
+from models.confirmation import ConfirmationModel
 from libs.mailgun import Mailgun
 from db import db
 
@@ -14,7 +15,16 @@ class UserModel(db.Model):
     username = db.Column(db.String(80), nullable=False, unique=True)
     password = db.Column(db.String(80), nullable=False)
     email = db.Column(db.String(80), nullable=False, unique=True)
-    activated = db.Column(db.Boolean, default=False)
+
+    confirmation = db.relationship("ConfirmationModel",
+                                   lazy="dynamic",  # allows attaching confirmation to the user created previously
+                                   cascade="all, delete-orphan")
+
+
+    @property
+    def most_recent_confirmation(self) -> "ConfirmationModel":
+        """get most recent confirmation that belongs to the user"""
+        return self.confirmation.order_by(db.desc(ConfirmationModel.expire_at)).first()
 
     @classmethod
     def find_by_username(cls, username: str) -> "UserModel":
@@ -30,7 +40,7 @@ class UserModel(db.Model):
 
     def send_confirmation_email(self) -> Response:
         # remove end slash from http://127.0.0.1:5000 + /user_confirm/1
-        link = request.url_root[:-1] + url_for("userconfirm", user_id=self.id)
+        link = request.url_root[:-1] + url_for("confirmation", confirmation_id=self.most_recent_confirmation.id)
         subject = "Registration confirmation"
         text = f"Please click the link to confirm your registration: {link}"
         html = f'<html>Please click the link to confirm your registration: <a href="{link}">{link}</a></html>'
