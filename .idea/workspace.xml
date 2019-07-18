@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f737a555-da9d-432c-acc5-24861de1e19f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/libs/strings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/strings/en-gb.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/strings/pl-pl.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/mailgun.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/mailgun.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/confirmation.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/confirmation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/item.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/item.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/store.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/store.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/strings/pl-pl.json" beforeDir="false" afterPath="$PROJECT_DIR$/strings/pl-pl.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,7 +18,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/user.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1598">
+            <state relative-caret-position="1394">
               <caret line="94" column="52" selection-start-line="94" selection-start-column="52" selection-end-line="94" selection-end-column="52" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
@@ -32,14 +27,41 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/libs/mailgun.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="383">
-              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+              <caret line="40" selection-start-line="40" selection-end-line="40" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/strings/pl-pl.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="42" selection-start-line="1" selection-start-column="42" selection-end-line="1" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/requirements.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="38" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -76,7 +98,6 @@
         <option value="$PROJECT_DIR$/db.py" />
         <option value="$PROJECT_DIR$/blacklist.py" />
         <option value="$PROJECT_DIR$/jwt_errors.py" />
-        <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/ma.py" />
         <option value="$PROJECT_DIR$/schemas/item.py" />
         <option value="$PROJECT_DIR$/schemas/store.py" />
@@ -90,7 +111,6 @@
         <option value="$PROJECT_DIR$/schemas/confirmation.py" />
         <option value="$PROJECT_DIR$/models/user.py" />
         <option value="$PROJECT_DIR$/schemas/user.py" />
-        <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/strings/en-gb.json" />
         <option value="$PROJECT_DIR$/libs/strings.py" />
         <option value="$PROJECT_DIR$/resources/confirmation.py" />
@@ -98,6 +118,9 @@
         <option value="$PROJECT_DIR$/resources/store.py" />
         <option value="$PROJECT_DIR$/resources/user.py" />
         <option value="$PROJECT_DIR$/libs/mailgun.py" />
+        <option value="$PROJECT_DIR$/strings/pl-pl.json" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/app.py" />
       </list>
     </option>
   </component>
@@ -115,6 +138,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -156,28 +180,28 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/models" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/strings" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Workshop\Bookstore\strings" />
+      <recent name="C:\Workshop\Bookstore\models" />
+      <recent name="C:\Workshop\Bookstore\resources" />
+      <recent name="C:\Workshop\Bookstore\_old\Bookstore" />
+      <recent name="C:\Workshop\Bookstore" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Workshop\Bookstore\libs" />
       <recent name="C:\Workshop\Bookstore\strings" />
       <recent name="C:\Workshop\Bookstore\models" />
       <recent name="C:\Workshop\Bookstore\resources" />
       <recent name="C:\Workshop\Bookstore\templates" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Workshop\Bookstore\models" />
-      <recent name="C:\Workshop\Bookstore\resources" />
-      <recent name="C:\Workshop\Bookstore\_old\Bookstore" />
-      <recent name="C:\Workshop\Bookstore" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -207,9 +231,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25237092" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25237092" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -220,7 +243,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32719395" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32719395" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -331,13 +354,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/schemas/store.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -378,11 +394,7 @@
     <entry file="file://$USER_HOME$/Desktop/end/resources/user.py" />
     <entry file="file://$PROJECT_DIR$/models/user1.py" />
     <entry file="file://$PROJECT_DIR$/resources/user1.py" />
-    <entry file="file://$USER_HOME$/Desktop/mailgun.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-255" />
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Desktop/mailgun.py" />
     <entry file="file://$PROJECT_DIR$/schemas/user.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -390,13 +402,6 @@
           <folding>
             <element signature="e#0#17#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -419,9 +424,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/strings/pl-pl.json">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/models/confirmation.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -480,16 +482,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/user.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1598">
-          <caret line="94" column="52" selection-start-line="94" selection-start-column="52" selection-end-line="94" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/strings/en-gb.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -497,13 +489,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/user.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1394">
+          <caret line="94" column="52" selection-start-line="94" selection-start-column="52" selection-end-line="94" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/libs/mailgun.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="383">
-          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/strings/pl-pl.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="42" selection-start-line="1" selection-start-column="42" selection-end-line="1" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="38" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
         </state>
       </provider>
     </entry>

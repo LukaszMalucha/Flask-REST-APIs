@@ -21,6 +21,7 @@ app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']  # enable black
 app.config['DEBUG'] = True
 api = Api(app)
 
+
 @app.errorhandler(ValidationError)
 def handle_marshmallow_validation(error):
     return jsonify(error.messages), 400

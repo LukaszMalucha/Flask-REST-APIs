@@ -1,4 +1,5 @@
 Flask==1.1.0
+flask-babel==0.12.2
 flask-jwt-extended==3.20.0
 flask-marshmallow==0.10.1
 Flask-Restful==0.3.7
