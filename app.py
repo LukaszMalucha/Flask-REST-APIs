@@ -18,6 +18,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # do not track changes unt
 app.config['PROPAGATE_EXCEPTIONS'] = True  # flask extensions can raise their own errors
 app.config['JWT_BLACKLIST_ENABLED'] = True  # enable blacklisting user id's
 app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']  # enable blacklist for those functions
+app.config['JWT_SECRET_KEY'] = os.environ["JWT_SECRET_KEY"]
 app.config['DEBUG'] = True
 api = Api(app)
 
