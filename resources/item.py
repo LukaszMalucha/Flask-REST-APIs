@@ -6,8 +6,6 @@ from models.item import ItemModel
 from schemas.item import ItemSchema
 from libs.strings import gettext
 
-
-
 item_schema = ItemSchema()
 item_list_schema = ItemSchema(many=True)
 
@@ -27,10 +25,9 @@ class Item(Resource):
             return {"message": gettext("item_name_exists").format(name)}, 400
 
         item_json = request.get_json()
-        item_json["name"] = name # populate missing field
+        item_json["name"] = name  # populate missing field
 
         item = item_schema.load(item_json)
-
 
         try:
             item.save_to_db()
@@ -59,7 +56,6 @@ class Item(Resource):
         else:
             item_json["name"] = name
             item = item_schema.load(item_json)
-
 
         item.save_to_db()
 

@@ -3,8 +3,6 @@ from models.store import StoreModel
 from schemas.store import StoreSchema
 from libs.strings import gettext
 
-
-
 store_schema = StoreSchema()
 store_list_schema = StoreSchema(many=True)
 

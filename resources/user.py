@@ -12,8 +12,6 @@ from libs.mailgun import MailGunException
 from models.confirmation import ConfirmationModel
 from libs.strings import gettext
 
-
-
 user_schema = UserSchema()
 
 
@@ -38,10 +36,11 @@ class UserRegister(Resource):
         except MailGunException as e:
             user.delete_from_db()
             return {"message": str(e)}, 500
-        except: # user failed to save to db
+        except:  # user failed to save to db
             traceback.print_exc()
             user.delete_from_db()
             return {"message": gettext("user_error_creating")}, 500
+
 
 class User(Resource):
 

@@ -8,14 +8,7 @@ from libs.mailgun import MailGunException
 from libs.strings import gettext
 from models.confirmation import ConfirmationModel
 from models.user import UserModel
-from resources.user import USER_NOT_FOUND
 from schemas.confirmation import ConfirmationSchema
-
-
-
-
-RESEND_FAIL = "Internal server error. Failed to resend confirmation email."
-RESEND_SUCCESSFUL = "E-mail confirmation successfully re-sent."
 
 confirmation_schema = ConfirmationSchema()
 
