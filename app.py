@@ -4,10 +4,14 @@ from flask import Flask, jsonify
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
 from marshmallow import ValidationError
+from flask_uploads import configure_uploads, patch_request_class
+
 from resources.user import User, UserRegister, UserLogin, UserLogout, TokenRefresh
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
 from resources.confirmation import Confirmation, ConfirmationByUser
+from resources.image import ImageUpload
+from libs.image_helper import IMAGE_SET
 from blacklist import BLACKLIST
 from ma import ma
 
@@ -19,8 +23,13 @@ app.config['PROPAGATE_EXCEPTIONS'] = True  # flask extensions can raise their ow
 app.config['JWT_BLACKLIST_ENABLED'] = True  # enable blacklisting user id's
 app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']  # enable blacklist for those functions
 app.config['JWT_SECRET_KEY'] = os.environ["JWT_SECRET_KEY"]
+app.config['UPLOADED_IMAGES_DEST'] = os.path.join("static", "images")
 app.config['DEBUG'] = True
+patch_request_class(app, 10 * 1024 * 1024)  # 10MB image size limit
+configure_uploads(app, IMAGE_SET) # img extensions
 api = Api(app)
+
+
 
 
 @app.errorhandler(ValidationError)
@@ -47,6 +56,7 @@ api.add_resource(Store, '/store/<string:name>')
 api.add_resource(StoreList, '/stores')
 api.add_resource(Confirmation, '/user_confirmation/<string:confirmation_id>')
 api.add_resource(ConfirmationByUser, '/confirmation/user/<int:user_id>')
+api.add_resource(ImageUpload, '/upload/image')
 
 
 if __name__ == '__main__':
