@@ -30,6 +30,12 @@
   "user_error_creating": "Internal server error. Failed to create user.",
   "user_registered": "Account created successfully. An email with the activation link has been sent.",
 
-  "image_uploaded": "Image '{}' has been successfully uploaded",
-  "image_illegal_extension": "Extension '{}' is not allowed"
+  "image_uploaded": "Image '{}' has been successfully uploaded.",
+  "image_illegal_extension": "Extension '{}' is not allowed.",
+  "image_illegal_file_name": "Requested filename {} not supported.",
+  "image_not_found": "Image {} not found.",
+  "image_deleted": "Image '{}' deleted",
+  "image_delete_failed": "Internal Server Error! Failed to delete a '{}' file",
+  "avatar_delete_failed": "Internal Server Error! Failed to delete a '{}' avatar",
+  "avatar_uploaded": "Profile picture '{}' successfully uploaded"
 }
