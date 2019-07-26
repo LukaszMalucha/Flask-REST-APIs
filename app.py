@@ -4,6 +4,7 @@ from flask import Flask, jsonify
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
 from marshmallow import ValidationError
+from flask_migrate import Migrate
 from flask_uploads import configure_uploads, patch_request_class
 
 from resources.user import User, UserRegister, UserLogin, UserLogout, TokenRefresh
@@ -30,7 +31,8 @@ patch_request_class(app, 10 * 1024 * 1024)  # 10MB image size limit
 configure_uploads(app, IMAGE_SET) # img extensions
 api = Api(app)
 
-
+from db import db
+migrate = Migrate(app, db)
 
 
 @app.errorhandler(ValidationError)
@@ -64,7 +66,6 @@ api.add_resource(Avatar, "/avatar/<int:user_id>")
 
 
 if __name__ == '__main__':
-    from db import db
 
     db.init_app(app)
     ma.init_app(app)
