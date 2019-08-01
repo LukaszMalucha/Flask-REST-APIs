@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f737a555-da9d-432c-acc5-24861de1e19f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/_old/Oauth/database.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_old/Oauth/libs/test_flask_lib.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_old/Oauth/resources/github_login.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_old/Oauth/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/_old/Oauth/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_old/Oauth/oa.py" beforeDir="false" afterPath="$PROJECT_DIR$/_old/Oauth/oa.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_old/Oauth/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/_old/Oauth/requirements.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

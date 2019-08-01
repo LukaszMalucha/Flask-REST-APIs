@@ -1,4 +1,5 @@
 import os
+from flask import g
 from flask_oauthlib.client import OAuth
 
 oauth = OAuth()
@@ -14,3 +15,8 @@ github = oauth.remote_app(
     access_token_url="https://github.com/login/oauth/access_token", # where we send data to get access token (from docs)
     authorize_url="https://github.com/login/oauth/authorize"  # where we send user in initial request (from github docs)
 )
+
+@github.tokengetter
+def get_github_token():
+    if 'access_token' in g:
+        return g.access_token
