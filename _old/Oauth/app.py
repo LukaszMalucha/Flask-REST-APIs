@@ -7,7 +7,7 @@ from marshmallow import ValidationError
 from oa import oauth
 from db import db
 from ma import ma
-from resources.user import UserRegister, UserLogin, User
+from resources.user import UserRegister, UserLogin, User, SetPassword
 from resources.github_login import GithubLogin, GithubAuthorize
 
 
@@ -35,7 +35,8 @@ api.add_resource(UserRegister, "/register")
 api.add_resource(User, "/user/<int:user_id>")
 api.add_resource(UserLogin, "/login")
 api.add_resource(GithubLogin, "/login/github")
-api.add_resource(GithubAuthorize, "/login/github/authorized")
+api.add_resource(GithubAuthorize, "/login/github/authorized", endpoint="github.authorize")
+api.add_resource(SetPassword, "/user/password")
 
 if __name__ == "__main__":
     db.init_app(app)
