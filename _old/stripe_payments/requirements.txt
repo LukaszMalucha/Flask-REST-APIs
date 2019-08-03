@@ -1,0 +1,9 @@
+Flask==1.1.1
+flask-jwt-extended==3.20.0
+flask-marshmallow==0.10.1
+flask-migrate==2.5.2
+Flask-Restful==0.3.7
+Marshmallow==3.0.0b16
+marshmallow-sqlalchemy==0.17.0
+oauthlib==2.1.0
+psycopg2==2.7.7
