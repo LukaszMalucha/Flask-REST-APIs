@@ -14,5 +14,7 @@
   "user_deleted": "User deleted.",
   "user_invalid_credentials": "Invalid credentials!",
   "user_logged_out": "User <id={}> successfully logged out.",
-  "user_registered": "Account created successfully."
+  "user_registered": "Account created successfully.",
+
+  "order_item_by_id_not_found": "An item <id={}> in this order cannot be found."
 }
