@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f737a555-da9d-432c-acc5-24861de1e19f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/_old/stripe_payments/models/order.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_old/stripe_payments/models/item.py" beforeDir="false" afterPath="$PROJECT_DIR$/_old/stripe_payments/models/item.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_old/stripe_payments/strings/en-gb.json" beforeDir="false" afterPath="$PROJECT_DIR$/_old/stripe_payments/strings/en-gb.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,19 +46,19 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Workshop\Bookstore\_old\Oauth" />
-      <recent name="C:\Workshop\Bookstore\libs" />
-      <recent name="C:\Workshop\Bookstore\strings" />
-      <recent name="C:\Workshop\Bookstore\models" />
-      <recent name="C:\Workshop\Bookstore\resources" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Workshop\Bookstore\_old\stripe_payments" />
       <recent name="C:\Workshop\Bookstore\_old\Oauth" />
       <recent name="C:\Workshop\Bookstore\_old\Oauth\resources" />
       <recent name="C:\Workshop\Bookstore\_old\Oauth\libs" />
       <recent name="C:\Workshop\Bookstore\strings" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Workshop\Bookstore\_old\Oauth" />
+      <recent name="C:\Workshop\Bookstore\libs" />
+      <recent name="C:\Workshop\Bookstore\strings" />
+      <recent name="C:\Workshop\Bookstore\models" />
+      <recent name="C:\Workshop\Bookstore\resources" />
     </key>
   </component>
   <component name="RunDashboard">
